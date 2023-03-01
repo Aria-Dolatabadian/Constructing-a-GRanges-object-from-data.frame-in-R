@@ -26,3 +26,46 @@ gr <- makeGRangesFromDataFrame(df, keep.extra.columns=TRUE)
 gr
 #exports in WD
 write.csv(gr, "GRanges.csv", row.names=FALSE)
+
+
+#Basic manipulation of GRanges objects
+
+seqnames(gr)
+ranges(gr)
+strand(gr)
+granges(gr)
+start(gr)
+end(gr)
+width(gr)
+mcols(gr)
+mcols(gr)$score
+score(gr)
+
+
+seqinfo(gr) <- Seqinfo(genome="hg38")
+seqinfo(gr)
+
+#Subsetting GRanges objects
+gr[2:3]
+gr[2:3, "GC"]
+subset(gr, strand == "+" & score > 5, select = score)
+
+
+grMod <- gr
+grMod[2] <- gr[1]
+head(grMod, n=3)
+
+rep(gr[2], times = 3)
+
+rev(gr)
+
+head(gr,n=2)
+
+tail(gr,n=2)
+
+window(gr, start=2,end=4)
+
+gr[IRanges(start=c(2,7), end=c(3,9))]
+
+
+
